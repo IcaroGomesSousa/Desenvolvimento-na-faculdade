@@ -24,4 +24,5 @@ def escolha():
     else:
         print ("não foi possivel fazer a operação")
 
+
 escolha()
