@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <h2>Formulario</h2>
+    <!-- nome-->
+    <label>Nome: </label>
+    <input type="text" id="nome" placeholder="Nome Completo" required><br><br>
+    <!-- email-->
+    <label>Email: </label>
+    <input type="email" id="email" placeholder="example@gmail.com" required><br><br>
+    <!-- telefone-->
+     <label>Telefone: </label>
+     <input type="tel" id="telefone" placeholder="(--)---------" maxlength="11" size="11"> <br><br>
+     <!-- data de nascimento-->
+      <label>Data de Nascimento</label>
+      <input type="date" id="datanascimento" required>
+    <!-- Satisfação-->
+     <input type="range" id="avaliacao">
+
+    <!-- botão de verificar-->
+    <button onclick="verificar()">Cadastrar</button>
+    
+    <p id="mensagem"></p>
+
+    <script>
+        function verificar(){
+        const nome = document.getElementById("nome");
+        const email = document.getElementById("email");
+        const datanascimento = document.getElementById("datanascimento")
+        const mensagem = document.getElementById("mensagem");
+        
+        if (nome.value === "" && email.value ===""){
+           mensagem.textContent = "Você precisa preencher o formulario";
+        } else if (nome.value === "") {
+                mensagem.textContent = "Escreva seu nome";
+          } else if (email.value === "") {
+                mensagem.textContent = "Email é obrigatório"
+            } else if (datanascimento.value ==="") {
+                mensagem.textContent = "Ponha sua data de Nascimento"
+            }
+            else {
+                mensagem.textContent = "";
+            }
+           }
+        
+        
+    </script>
+
+    <figure>
+            <canvas id="grafico" width="400" height="50" style="border: 1px solid #000;"></canvas>
+            <figcaption>Esse gráfico mostra a porcentagem da sua avaliação de satisfação do formulário.</figcaption>
+        </figure>
+    </form>
+
+        <script>
+            const formulario = document.getElementById("formulario");
+            const range = document.getElementById('avaliacao');
+            const canvas = document.getElementById('grafico');
+            const ctx = canvas.getContext('2d');
+
+            function desenhar () {
+                const valor = range.value;
+                const largura = (valor / 100) * canvas.width;
+
+                ctx.clearRect(0, 0, canvas.width, canvas.heigth);
+                ctx.fillStyle = "#ddd";
+                ctx.fillRect(0, 15, canvas.width, 20);
+                ctx.fillStyle = "#4CAF50";
+                ctx.fillRect(0, 15, largura, 20);
+                ctx.fillStyle = "#000";
+
+                ctx.fillStyle = "#000";
+                ctx.font = "16px Arial";
+                ctx.textAlign = "center";
+                ctx.fillText(valor + "%", canvas.width / 2, 30);
+            }
+
+            formulario.addEventListener("submit", function(event) {
+                event.preventDefault();
+                desenhar();
+            });
+        </script>
+<!-- alunos que ajudaram dando ideias e desenvolvendo:
+ Ícaro gomes
+ Gean karlo feitosa
+ Chrystian Meneses
+ Luís Fernando
+ Gelson Antonio
+ Gustavo Cardoso
+ Davis
+ Tiago
+ -->
+</body>
+</html>
